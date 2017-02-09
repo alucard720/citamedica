@@ -1,0 +1,22 @@
+package dr.gob.hacienda.servicios.utilitarios;
+
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.TransactionManager;
+
+@Stateless
+public class AdministradorEntidadTransaccion {
+
+	private @Resource TransactionManager transactionManager;
+	private @PersistenceContext  EntityManager entityManager;
+	
+	public TransactionManager getTransactionManager() {
+		return transactionManager;
+	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+}

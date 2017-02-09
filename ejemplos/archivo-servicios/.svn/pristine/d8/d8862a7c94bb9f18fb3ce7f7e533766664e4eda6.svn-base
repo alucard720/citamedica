@@ -1,0 +1,51 @@
+package dr.gob.hacienda.servicios.cliente;
+
+import java.net.URI;
+import java.util.List;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+
+import dr.gob.hacienda.servicios.modelo.Archivo;
+import dr.gob.hacienda.servicios.modelo.ArchivoBusqueda;
+
+public class ArchivoBusquedaCliente {
+
+	private Client cliente;
+	
+	public ArchivoBusquedaCliente(){
+		cliente = ClientBuilder.newClient();
+	}
+	
+	public List<Archivo> buscar (String parametro, List<String> valoresBusqueda) {
+		
+		URI uri = UriBuilder.fromUri("http://localhost:8080/archivo-servicios/webapi/")
+				.path("buscar/archivos")
+				.queryParam(parametro, valoresBusqueda)
+				.build();
+		
+		WebTarget destino = cliente.target(uri);
+		
+		List<Archivo> respuesta = destino.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Archivo>> () {});
+		
+		return respuesta;
+	}
+
+	public List<Archivo> buscar(ArchivoBusqueda buscar) {
+		URI uri = UriBuilder.fromUri("http://localhost:8080/archivo-servicios/webapi/")
+				.path("buscar/archivos")				
+				.build();
+		
+		WebTarget destino = cliente.target(uri);
+		
+		Response respuesta = destino.request(MediaType.APPLICATION_JSON).post(Entity.entity(buscar, MediaType.APPLICATION_JSON));
+		
+		return respuesta.readEntity(new GenericType<List<Archivo>>() {});
+	}
+}

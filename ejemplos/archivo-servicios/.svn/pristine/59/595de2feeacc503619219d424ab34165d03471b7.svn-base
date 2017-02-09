@@ -1,0 +1,15 @@
+{
+	"configuraciones": [{
+		"aplicacion": "local",
+		"ruta": "/home/alexandermatos/temp/"
+	}, {
+		"aplicacion": "SIGEF",
+		"ruta": "http://172.16.7.34:8888/sigef/repoImagenes/"
+	}, {
+		"aplicacion": "COMPRAS",
+		"ruta": "http://172.16.7.34:8888/compras/repoImagenes/"
+	}, {
+		"aplicacion": "ESIGEF",
+		"ruta": "http://172.16.7.34:8888/esigef/repoImagenes/"
+	}]
+}

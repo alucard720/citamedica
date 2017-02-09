@@ -1,0 +1,107 @@
+package dr.gob.hacienda.servicios.modelo;
+
+import java.net.URI;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "ARCHIVOS")
+public class Archivo {
+
+	//*****************************************
+	// Declaracion de Variables
+	//*****************************************
+	@Id
+	@GeneratedValue
+	private int archivoId;
+	
+	@Column(name="Nombre", length = 100, nullable = false)
+	private String nombre;
+	
+	@Column(name = "Ruta", length = 512, nullable = false)	
+	private String ruta;
+
+	@Column(name = "Descripcion", length = 255)
+	private String descripcion;
+	
+	@Column(name = "Aplicacion", length = 50)
+	private String aplicacion;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="AST")
+	private Date fechaArchivo;
+
+	@Enumerated(EnumType.STRING)
+	private TipoArchivo tipoArchivo;
+
+	//*****************************************
+	// SET y GETS
+	//*****************************************	
+	public TipoArchivo getTipoArchivo() {
+		return tipoArchivo;
+	}
+	
+	public void setTipoArchivo(TipoArchivo tipoArchivo) {
+		this.tipoArchivo = tipoArchivo;
+	}
+	
+	public int getArchivoId() {
+		return archivoId;
+	}
+	
+	public void setArchivoId(int archivoId) {
+		this.archivoId = archivoId;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public URI getRuta() {
+		return URI.create(ruta);
+	}
+	
+	public void setRuta(URI ruta) {
+		this.ruta = ruta.toString();
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	public String getAplicacion() {
+		return aplicacion;
+	}
+	
+	public void setAplicacion(String aplicacion) {
+		this.aplicacion = aplicacion;
+	}
+	
+	public Date getFechaArchivo() {
+		return fechaArchivo;
+	}
+	
+	public void setFechaArchivo(Date localDateTime) {
+		this.fechaArchivo = localDateTime;
+	}
+}

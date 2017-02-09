@@ -1,0 +1,135 @@
+package dr.gob.hacienda.servicios.modelo;
+
+import java.net.URI;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NaturalId;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "ARCHIVOS")
+public class Archivo {
+
+	// *****************************************
+	// Declaracion de Variables
+	// *****************************************
+	@Id
+	@GeneratedValue
+	private int archivoId;
+
+	@NaturalId
+	@Column(name = "ID_ARCHIVO_BLOB", length = 100)
+	private String idArchivoBlob;
+
+	@Column(name = "HASHUNICO", length = 512)
+	private String COD_HASH_UNICO;
+
+	@Column(name = "NOMBRE", length = 100, nullable = false)
+	private String nombre;
+
+	@Column(name = "RUTA", length = 512, nullable = false)
+	private String ruta;
+
+	@Column(name = "ATR_DESCRIPCION", length = 255)
+	private String descripcion;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd,HH:00", timezone = "AST")
+	@Column(name = "FCH_ARCHIVO")
+	private Date fechaArchivo;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd,HH:00", timezone = "AST")
+	@Column(name = "FCH_EXPIRACION")
+	private Date fechaExpiracion;
+
+	@Enumerated(EnumType.STRING)
+	private TipoArchivo tipoArchivo;
+
+	// *****************************************
+	// SET y GETS
+	// *****************************************
+	public int getArchivoId() {
+		return archivoId;
+	}
+
+	public void setArchivoId(int archivoId) {
+		this.archivoId = archivoId;
+	}
+
+	public String getIdArchivoBlob() {
+		return idArchivoBlob;
+	}
+
+	public void setIdArchivoBlob(String idArchivoBlob) {
+		this.idArchivoBlob = idArchivoBlob;
+	}
+
+	public String getCOD_HASH_UNICO() {
+		return COD_HASH_UNICO;
+	}
+
+	public void setCOD_HASH_UNICO(String cOD_HASH_UNICO) {
+		COD_HASH_UNICO = cOD_HASH_UNICO;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public URI getRuta() {
+		return URI.create(ruta);
+	}
+
+	public void setRuta(URI ruta) {
+		this.ruta = ruta.toString();
+	}
+
+	public Date getFechaArchivo() {
+		return fechaArchivo;
+	}
+
+	public void setFechaArchivo(Date fechaArchivo) {
+		this.fechaArchivo = fechaArchivo;
+	}
+
+	public Date getFechaExpiracion() {
+		return fechaExpiracion;
+	}
+
+	public void setFechaExpiracion(Date fechaExpiracion) {
+		this.fechaExpiracion = fechaExpiracion;
+	}
+
+	public TipoArchivo getTipoArchivo() {
+		return tipoArchivo;
+	}
+
+	public void setTipoArchivo(TipoArchivo tipoArchivo) {
+		this.tipoArchivo = tipoArchivo;
+	}
+
+}

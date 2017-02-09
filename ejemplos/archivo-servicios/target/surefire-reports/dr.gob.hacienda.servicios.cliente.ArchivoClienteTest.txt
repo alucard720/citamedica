@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dr.gob.hacienda.servicios.cliente.ArchivoClienteTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 6, Time elapsed: 0.04 sec

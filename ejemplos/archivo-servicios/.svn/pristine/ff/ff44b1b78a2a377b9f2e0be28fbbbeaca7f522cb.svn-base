@@ -1,0 +1,38 @@
+package dr.gob.hacienda.servicios.modelo;
+
+import java.util.Date;
+import java.util.List;
+
+public class ArchivoBusqueda {
+
+	private Date fechaDesde;
+	private Date fechaHasta;
+	
+	private List<String> nombres;
+	private List<String> descripciones;
+	
+	public Date getFechaDesde() {
+		return fechaDesde;
+	}
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
+	}
+	public List<String> getNombres() {
+		return nombres;
+	}
+	public void setNombres(List<String> nombres) {
+		this.nombres = nombres;
+	}
+	public List<String> getDescripciones() {
+		return descripciones;
+	}
+	public void setDescripciones(List<String> descripciones) {
+		this.descripciones = descripciones;
+	}	
+}

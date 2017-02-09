@@ -1,0 +1,34 @@
+package dr.gob.hacienda.servicios;
+
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import dr.gob.hacienda.servicios.modelo.Archivo;
+import dr.gob.hacienda.servicios.repositorio.ArchivoRepositorio;
+import dr.gob.hacienda.servicios.repositorio.ArchivoRepositorioMoc;
+
+@Path("buscar/archivos")
+public class ArchivoBusquedaRecurso {
+
+	private ArchivoRepositorio archivoRepositorio = new ArchivoRepositorioMoc();
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response buscarArchivosPorDescripciones(@QueryParam(value = "nombre") List<String> nombres) {
+		List<Archivo> archivos = archivoRepositorio.buscarPorNombres(nombres);
+		
+		if (archivos == null || archivos.size() <= 0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		
+		return Response.ok().entity(new GenericEntity<List<Archivo>>(archivos) {}).build();
+	}
+}

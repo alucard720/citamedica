@@ -1,0 +1,15 @@
+package dr.gob.hacienda.servicios.repositorio;
+
+import java.util.List;
+
+import dr.gob.hacienda.servicios.modelo.Archivo;
+
+public interface ArchivoRepositorio {
+
+	Archivo buscaArchivo(String archivoId);
+	void crear(Archivo archivo);
+	Archivo actualizar(Archivo archivo);
+	void borrar(String archivoId);
+	List<Archivo> buscaTodosLosArchivos();
+	List<Archivo> buscarPorNombres(List<String> nombres);
+}
